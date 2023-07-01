@@ -5,10 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,10 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -84,11 +77,9 @@ fun GreetingPreview() {
 fun TweetReplication() {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
             .background(Color(0xFF171c28))
     ) {
         TweetHeader()
-//        TweetFooter()
     }
 }
 
@@ -160,7 +151,7 @@ fun TweetHeader() {
                     painter = painterResource(id = R.drawable.ic_dots),
                     contentDescription = "ic_dots",
                     tint = Color.White,
-                    modifier = Modifier.constrainAs(dots_icon) {
+                    modifier = Modifier.padding(end = 48.dp).constrainAs(dots_icon) {
                         end.linkTo(parent.end)
                     }
                 )
@@ -179,7 +170,7 @@ fun TweetHeader() {
             color = Color.White,
             fontSize = 19.sp,
             modifier = Modifier
-                .padding(top = 2.dp, start = 16.dp)
+                .padding(top = 2.dp, start = 16.dp, end = 48.dp)
                 .constrainAs(tweetDescription) {
                     start.linkTo(tweetHeader.start)
                     end.linkTo(tweetHeader.end)
@@ -191,7 +182,7 @@ fun TweetHeader() {
             contentScale = ContentScale.Crop,
             contentDescription = "Tweet Body Image",
             modifier = Modifier
-                .height(270.dp)
+                .height(250.dp)
                 .widthIn(min = 100.dp, max = 335.dp)
                 .padding(top = 16.dp)
                 .clip(RoundedCornerShape(18.dp))
@@ -203,7 +194,7 @@ fun TweetHeader() {
         )
 
         Row(modifier = Modifier
-            .padding(top = 24.dp, bottom = 32.dp, start = 16.dp)
+            .padding(top = 24.dp, start = 16.dp)
             .constrainAs(footer) {
                 start.linkTo(tweetDescription.start)
                 top.linkTo(tweetImage.bottom)
@@ -246,16 +237,10 @@ fun TweetHeader() {
             }
 
         }
-
-        Divider(
-            thickness = 0.8.dp,
-            color = Color.LightGray,
-            modifier = Modifier
-                .fillMaxWidth()
-                .constrainAs(divider) {
-                    top.linkTo(footer.bottom)
-                }
-        )
-
     }
+    Divider(
+        thickness = 0.8.dp,
+        color = Color.LightGray,
+        modifier = Modifier
+    )
 }
